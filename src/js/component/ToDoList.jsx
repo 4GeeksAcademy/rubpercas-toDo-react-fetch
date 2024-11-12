@@ -3,6 +3,7 @@ import swal from "sweetalert";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPenToSquare, faFloppyDisk, faCircleXmark, faUser, faCircleCheck, faBan, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import Login from './Login';
+// import CheckboxInput from "./CheckboxInput";
 
 
 const ToDoList = () => {
@@ -19,53 +20,10 @@ const ToDoList = () => {
     localStorage.removeItem('username');
   };
 
-  const createUserName = async () => {
-    if (!handleInputUser) {
-      swal({
-        title: "Ingrese un nombre de usuario",
-        icon: "warning",
-        button: "Aceptar",
-        timer: "3000",
-      });
-      return;
-    }
-    try {
-      const response = await fetch(`https://playground.4geeks.com/todo/users/${handleInputUser}`, {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-        }
-      })
-
-      if (!response.ok) {
-        swal({
-          title: "Usuario existente.",
-          icon: "warning",
-          button: "Aceptar",
-          timer: "3000"
-        });
-
-      } else {
-        swal({
-          title: "Usuario creado correctamente.",
-          icon: "success",
-          button: "Aceptar",
-          timer: "3000"
-        });
-        const result = await response.json();
-        setHandleInputUser("");
-        console.log(result);
-      }
-
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const getListToDos = async () => {
     if (!isLoggedIn) return;
     try {
-      const response = await fetch(`https://playground.4geeks.com/todo/users/rubpercas`);
+      const response = await fetch(`https://playground.4geeks.com/todo/users/${loginUser}`);
       const result = await response.json()
       setListTask(result.todos)
     } catch (error) {
@@ -79,7 +37,7 @@ const ToDoList = () => {
         "label": inputValue,
         "is_done": false
       }
-      const response = await fetch(`https://playground.4geeks.com/todo/todos/rubpercas`, {
+      const response = await fetch(`https://playground.4geeks.com/todo/todos/${loginUser}`, {
         method: "POST",
         headers: {
           "Accept": "application/json",
@@ -88,7 +46,7 @@ const ToDoList = () => {
         body: JSON.stringify(taskToSent)
       })
 
-      if (!response.ok) {
+      if (response.ok) {
         swal({
           title: "Tarea creada",
           icon: "success",
@@ -134,7 +92,7 @@ const ToDoList = () => {
         "is_done": true
       }
 
-      const response = await fetch(`https://playground.4geeks.com/todo/todos/rubpercas`, {
+      const response = await fetch(`https://playground.4geeks.com/todo/todos/${loginUser}`, {
         method: "PUT",
         headers: {
           "Accept": "application/json",
@@ -200,18 +158,6 @@ const ToDoList = () => {
               <a className="navbar-brand">TO DO LIST</a>
               <div className="d-flex">
                 <label>Do you want to create a new User?</label>
-                <input
-                  value={handleInputUser}
-                  onChange={(event) => setHandleInputUser(event.target.value)}
-                  style={{ marginRight: "10px" }}
-                  placeholder="Usuario"
-                />
-                <button
-                  title="Create new user"
-                  onClick={createUserName}
-                  className="component-button"
-                ><FontAwesomeIcon icon={faUser} style={{ color: "#ffffff", }} />
-                </button>
                 <button
                   title="Logout"
                   onClick={handleLogout}

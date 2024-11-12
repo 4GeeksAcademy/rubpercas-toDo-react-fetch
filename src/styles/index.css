@@ -22,6 +22,12 @@ body {
     overflow: auto;
 }
 
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 label {
     color: white;
     margin-right: 10px;
@@ -102,7 +108,6 @@ button {
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
-    position: relative;
     display: inline-block;
     outline: none;
     border-radius: 5px;
@@ -115,15 +120,187 @@ button {
 }
 
 
-.login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.container-login {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 100px;
+    position: relative;
+    height: auto;
+    width: 120vh;
+    backdrop-filter: invert(70%);
+    border-radius: 5px;
+    padding: 10px;
   }
   
   .error {
     color: red;
   }
+
+h2 {
+    color:white;
+}
+
+.container {
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    height: auto;
+    width: 120vh;
+    backdrop-filter: invert(70%);
+    border-radius: 5px;
+    overflow: auto;
+}
+
+
+/*Estilos input*/
+
+/* .c-checkbox {
+    display: none;
+
+    &:checked + .c-formContainer {
+        .c-form {
+            width: 37.5em;
+        }
+
+        .c-form__toggle {
+            visibility: hidden;
+            opacity: 0;
+            transform: scale(0.7);
+        }
+
+        .c-form__input,
+        .c-form__buttonLabel {
+            transition: 0.2s 0.1s;
+            visibility: visible;
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    &:not(:checked),
+    &:checked {
+        + .c-formContainer .c-form__input:required:valid ~ .c-form__toggle::before {
+            content: 'Thank You! \1F60A';
+        }
+    }
+
+    &:not(:checked) + .c-formContainer {
+        .c-form__input:required:valid ~ .c-form__toggle {
+            pointer-events: none;
+            cursor: default;
+        }
+    }
+}
+
+.c-formContainer,
+.c-form,
+.c-form__toggle {
+    width: 20em;
+    height: 6.25em;
+}
+
+.c-formContainer {
+    position: relative;
+    font-weight: 700;
+}
+
+.c-form,
+.c-form__toggle {
+    position: absolute;
+    border-radius: 6.25em;
+    background-color: rgba(105, 105, 105, 0.582);
+    transition: 0.2s;
+}
+
+.c-form {
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.625em;
+    box-sizing: border-box;
+    box-shadow: 0 0.125em 0.3125em rgba(black, 0.3);
+
+
+    display: flex;
+    justify-content: center;
+}
+
+.c-form__toggle {
+    color: rgb(255, 255, 255);
+    top: 0;
+    cursor: pointer;
+    z-index: 1;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::before {
+        font-size: 1.75em;
+        content: attr(data-title);
+    }
+}
+
+.c-form__input,
+.c-form__button {
+    font: inherit;
+    border: 0;
+    outline: 0;
+    border-radius: 5em;
+    box-sizing: border-box;
+}
+
+.c-form__input,
+.c-form__buttonLabel {
+    font-size: 1.75em;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.7);
+    transition: 0s;
+}
+
+.c-form__input {
+    color: rgba(44, 44, 44, 0.589);
+    height: 100%;
+    width: 70%;
+    padding: 0 0.714em;
+
+    &::placeholder {
+        color: currentColor;
+    }
+
+    &:required:valid {
+        color: rgba(44, 44, 44, 0.589);
+
+        + .c-form__buttonLabel {
+            color: rgba(105, 105, 105, 0.582);
+
+            &::before {
+                pointer-events: initial;
+            }
+        }
+    }
+}
+
+.c-form__buttonLabel {
+    color: yellow;
+    height: 100%;
+    width: auto;
+    
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        cursor: pointer;
+    }
+}
+
+.c-form__button {
+    color: inherit;
+    padding: 0;
+    height: 100%;
+    width: 2em;
+    background-color: rgba(44, 44, 44, 0.589);
+} */
